@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    </head>
+    <body>
+        {% block body %}
+            <div class="wrapper">
+                <div class="left_block">
+                    {% for c in city %}
+                        <p> {{ c.getCityName() }} </p>
+                    {% endfor %}
+                </div>
+                <div class="right_block">
+
+                </div>
+            </div>
+        {% endblock %}
+            
+        {% block javascripts %}
+        
+        {% endblock %}
+    </body>
+</html>
