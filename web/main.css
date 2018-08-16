@@ -1,5 +1,5 @@
 div.wrapper {
-    width:402px; /* left_block + right_block + зазор */
+    width:400px;
     background-color:#ccc;
 }
 div.left_block {
@@ -11,4 +11,7 @@ div.right_block {
     float:right;
     width:200px;
     outline: 2px solid #000;
+}
+div.result {
+    width:400px;
 }

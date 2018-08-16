@@ -12,12 +12,19 @@
             <div class="wrapper">
                 <div class="left_block">
                     {% for c in city %}
-                        <p> {{ c.getCityName() }} </p>
+                        <input type="checkbox" name="{{ c.getCityName() }}" value="{{ c.getCityName() }}" checked>{{ c.getCityName() }}<Br>
                     {% endfor %}
                 </div>
                 <div class="right_block">
-
+                    {% for e in education %}
+                        <input type="checkbox" name="{{ e.getEducationName() }}" value="{{ e.getEducationName() }}" checked>{{ e.getEducationName() }}<Br>
+                    {% endfor %}
                 </div>
+            </div>
+            <div class="result">
+                {% for u in user %}
+                    {{ u.getUsername() }} <br>
+                {% endfor %}
             </div>
         {% endblock %}
             

@@ -21,9 +21,19 @@ class DefaultController extends Controller
             ->getRepository(Cities::class)
             ->findAll();
         
+        $education = $this->getDoctrine()
+            ->getRepository(Educations::class)
+            ->findAll();
         
+        $user = $this->getDoctrine()
+            ->getRepository(Users::class)
+            ->findAll();
 
-        return $this->render('base.html.twig', ['city' => $city]);
+        return $this->render('base.html.twig', [
+            'city' => $city, 
+            'education' => $education,
+            'user' => $user
+        ]);
 
     }
 }
