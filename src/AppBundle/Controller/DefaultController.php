@@ -34,7 +34,30 @@ class DefaultController extends Controller
             'education' => $education,
             'user' => $user
         ]);
-
+    }
+    
+    public function listAction (Request $request){
+        /*$cities = $request->request->get('arrayCity', array());        
+        $arrayUsers = array();
+        foreach ($cities as $city){
+            $users = $this->getDoctrine()
+                ->getRepository(Users::class)
+                ->find($city);
+            foreach ($users as $user){
+                array_push($arrayUsers, $user->getUsername());
+            }
+        }*/
+        $educations = $request->request->get('arrayEducation', array());        
+        $arrayUsers = array();
+        foreach ($educations as $education){
+            $users = $this->getDoctrine()
+                ->getRepository(Users::class)
+                ->find($education);
+            foreach ($users as $user){
+                array_push($arrayUsers, $user->getUsername());
+            }
+        }
+        return new JsonResponse($arrayUsers);
     }
 }
 
