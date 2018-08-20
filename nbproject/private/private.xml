@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/eetp/src/AppBundle/Entity/Users.php</file>
-            <file>file:/C:/wamp/www/eetp/app/Resources/views/base.html.twig</file>
-            <file>file:/C:/wamp/www/eetp/src/AppBundle/Controller/DefaultController.php</file>
-            <file>file:/C:/wamp/www/eetp/src/AppBundle/Repository/UsersRepository.php</file>
+            <file>file:/C:/wamp64/www/eetp/app/Resources/views/base.html.twig</file>
+            <file>file:/C:/wamp64/www/eetp/src/AppBundle/Repository/UsersRepository.php</file>
+            <file>file:/C:/wamp64/www/eetp/src/AppBundle/Entity/Users.php</file>
+            <file>file:/C:/wamp64/www/eetp/src/AppBundle/Controller/DefaultController.php</file>
         </group>
     </open-files>
 </project-private>

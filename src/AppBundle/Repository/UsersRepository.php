@@ -2,6 +2,7 @@
 
 use AppBundle\Entity\Users;
 use AppBundle\Entity\Educations;
+use Doctrine\ORM\Query;
 
 namespace AppBundle\Repository;
 
@@ -16,10 +17,9 @@ class UsersRepository extends \Doctrine\ORM\EntityRepository
     public function findAllWithEducation($education_ids, $cities_ids): array
     {
         return $this->getEntityManager()
-            ->createQuery("SELECT u FROM AppBundle\Entity\Users u WHERE IDENTITY(u.educations) IN (:education_ids) AND IDENTITY(u.cities) IN (:cities_ids)")
+            ->createQuery("SELECT u FROM AppBundle\Entity\Users u JOIN u.cities c WITH (c.id IN(:cities_ids))WHERE IDENTITY(u.educations) IN(:education_ids)")            
             ->setParameter('education_ids', $education_ids)
             ->setParameter('cities_ids', $cities_ids)
             ->getResult();
     }
-    
 }
