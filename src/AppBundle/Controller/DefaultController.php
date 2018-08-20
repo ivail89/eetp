@@ -15,6 +15,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * Вывод данных при запуске страницы
      */
     public function indexAction(Request $request)
     {
@@ -37,22 +38,18 @@ class DefaultController extends Controller
         ]);
     }
     
+    //Обработка ajax запроса
     public function listAction (Request $request){
-        /*$cities = $request->request->get('arrayCity', array());        
-        $arrayUsers = array();
-        foreach ($cities as $city){
-            $users = $this->getDoctrine()
-                ->getRepository(Users::class)
-                ->find($city);
-            foreach ($users as $user){
-                array_push($arrayUsers, $user->getUsername());
-            }
-        }*/
-        $educations = $request->request->get('arrayEducation', array());        
+        //массив id отмеченных образований
+        $educations = $request->request->get('arrayEducation', array());
+        //массив id отмеченных городов
+        $cities = $request->request->get('arrayCity', array());
+        
+        // получаем всех людей удовлетворяющих критериям (Образование + Город)
         $arrayUsers = array();
             $users = $this->getDoctrine()
                 ->getRepository(Users::class)
-                ->findAllWithEducation($educations);
+                ->findAllWithEducation($educations, $cities);
             foreach ($users as $user){
                 array_push($arrayUsers, $user->getUsername());
             }

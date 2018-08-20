@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class LoadCommonData extends Fixture
 {
+    //заполение БД начальными данными
     public function load(ObjectManager $manager)
     {
         $arrayEducations = ['Secondary', 'Bachelor', 'Master', 'PHD'];
@@ -28,7 +29,7 @@ class LoadCommonData extends Fixture
 
         for ($j = 0; $j < 20; $j++){
             $user = new Users();
-            $user->setUsername($arrayNames[rand(0,9)]);
+            $user->setUsername($arrayNames[rand(0,9)].''.$arrayNames[rand(0,9)]);
             $user->setEducations($education[rand(0,3)]);
             $user->addCity($city[rand(0,3)]);
             $manager->persist($user);

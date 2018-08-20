@@ -13,11 +13,12 @@ namespace AppBundle\Repository;
  */
 class UsersRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllWithEducation($education_ids): array
+    public function findAllWithEducation($education_ids, $cities_ids): array
     {
         return $this->getEntityManager()
-            ->createQuery("SELECT u FROM AppBundle\Entity\Users u WHERE IDENTITY(u.educations) IN (:education_ids)")
+            ->createQuery("SELECT u FROM AppBundle\Entity\Users u WHERE IDENTITY(u.educations) IN (:education_ids) AND IDENTITY(u.cities) IN (:cities_ids)")
             ->setParameter('education_ids', $education_ids)
+            ->setParameter('cities_ids', $cities_ids)
             ->getResult();
     }
     

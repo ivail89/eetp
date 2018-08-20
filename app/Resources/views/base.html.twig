@@ -22,7 +22,7 @@
                         </label>
                     {% endfor %}
                 </div>
-                <div class="right_block">
+                <div class="right_block" id="group">
                     {% for e in education %}
                         <label>
                             <input type="checkbox" class="js-checkbox" value="{{ e.getId() }}" data-type="education"> 
@@ -41,6 +41,14 @@
         {% block javascripts %}
             <script src="//yandex.st/jquery/2.1.1/jquery.min.js"></script>
             <script>
+                // образование можно выбрать только одно
+                $('#group input:checkbox').click(function(){
+                    if ($(this).is(':checked')) {
+                        $('#group input:checkbox').not(this).prop('checked', false);
+                    }
+                });
+                
+                //получение данных по установленным фильтрам
                 function updateTable() {
                     var arrayCity = [];
                     var arrayEducation = [];
@@ -48,8 +56,10 @@
                     $('input:checkbox:checked').each(function(){
                         var type = $(this).data('type');
                         if (type == 'city'){
+                            // собираем массив id отмеченных городов
                             arrayCity.push($(this).val());
                         } else if (type == 'education'){
+                            // собираем массив id отмеченных образований
                             arrayEducation.push($(this).val());
                         }
                     });
@@ -58,7 +68,10 @@
                         type: 'POST',
                         url: '{{ path('app_bundle_route') }}',
                         dataType: 'json',
-                        data: { arrayEducation: arrayEducation },
+                        data: { 
+                            arrayEducation: arrayEducation,
+                            arrayCity: arrayCity
+                        },
                         success: function (data)
                         {
                             console.log(data);
