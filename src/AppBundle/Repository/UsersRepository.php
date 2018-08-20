@@ -1,5 +1,8 @@
 <?php
 
+use AppBundle\Entity\Users;
+use AppBundle\Entity\Educations;
+
 namespace AppBundle\Repository;
 
 /**
@@ -10,4 +13,12 @@ namespace AppBundle\Repository;
  */
 class UsersRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllWithEducation($education_ids): array
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT u FROM AppBundle\Entity\Users u WHERE IDENTITY(u.educations) IN (:education_ids)")
+            ->setParameter('education_ids', $education_ids)
+            ->getResult();
+    }
+    
 }

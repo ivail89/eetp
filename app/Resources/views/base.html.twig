@@ -17,7 +17,7 @@
                 <div class="left_block">
                     {% for c in city %}
                         <label>
-                            <input type="checkbox" class="js-checkbox" value="{{ c.getCityName() }} " data-type="city"> 
+                            <input type="checkbox" class="js-checkbox" value="{{ c.getId() }} " data-type="city"> 
                             {{ c.getCityName() }} <br>
                         </label>
                     {% endfor %}
@@ -25,7 +25,7 @@
                 <div class="right_block">
                     {% for e in education %}
                         <label>
-                            <input type="checkbox" class="js-checkbox" value="{{ e.getEducationName() }}" data-type="education"> 
+                            <input type="checkbox" class="js-checkbox" value="{{ e.getId() }}" data-type="education"> 
                             {{ e.getEducationName() }} <br>
                         </label>
                     {% endfor %}
@@ -58,9 +58,10 @@
                         type: 'POST',
                         url: '{{ path('app_bundle_route') }}',
                         dataType: 'json',
-                        data: { arrayEducation: arrayEducation }
+                        data: { arrayEducation: arrayEducation },
                         success: function (data)
                         {
+                            console.log(data);
                             document.getElementById('result').innerHTML = data.join('<br>');
                         }
                     });

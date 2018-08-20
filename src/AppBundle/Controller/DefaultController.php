@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,14 +50,12 @@ class DefaultController extends Controller
         }*/
         $educations = $request->request->get('arrayEducation', array());        
         $arrayUsers = array();
-        foreach ($educations as $education){
             $users = $this->getDoctrine()
                 ->getRepository(Users::class)
-                ->find($education);
+                ->findAllWithEducation($educations);
             foreach ($users as $user){
                 array_push($arrayUsers, $user->getUsername());
             }
-        }
         return new JsonResponse($arrayUsers);
     }
 }
